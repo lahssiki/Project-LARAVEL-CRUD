@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function home(){
+        return view('home');
+    }
     public function index(){
         $products = Product::all();
         return view('products.index', ['products'=> $products]);

@@ -1,44 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@extends('home')
+
 <body>
+    @section('content')
     <h1>Create a Product</h1>
     <div>
         @if($errors->any())
-        <ul>
+        <ul class="alert alert-danger col-md-3 m-2 " role="alert">
             @foreach ($errors->all() as $error)
                 <li>{{$error}}</li>
             @endforeach
         </ul>
         @endif
     </div>
-    <form method="post" action="{{route('product.store')}}">
+    <form  class="row g-4" method="post" action="{{route('product.store')}}">
         @csrf
         @method('post')
         <div>
-            <label for="">name</label>
-            <input type="text" name="name" placeholder="name">
+        <div class="col-md-6">
+            <label class="form-label" >name</label>
+            <input  class="form-control"type="text" name="name" placeholder="name">
         </div>
-        <div>
-            <label for="">qty</label>
-            <input type="text" name="qty" placeholder="qty">
+        <div class="col-md-6">
+            <label class="form-label" >Quantity</label>
+            <input class="form-control" type="text" name="qty" placeholder="Quantity">
         </div>
-        <div>
-            <label for="">Price</label>
-            <input type="text" name="price" placeholder="Price">
+        <div class="col-md-6">
+            <label class="form-label">Price</label>
+            <input class="form-control" type="text" name="price" placeholder="Price">
         </div>
-        <div>
-            <label for="">description</label>
-            <input type="text" name="description" placeholder="description">
+        <div class="col-md-6 ">
+            <label class="form-label">description</label>
+            <input class="form-control" type="text" name="description" placeholder="description">
         </div>
-        <div>
-            <input type="submit" value="save a new Product">
+    </div>
+        <div class="col-md-6 text-center">
+            <input type="submit" class="btn btn-primary mb-3" value="Save a New Product">
         </div>
     </form>
+    @endsection
 </body>
 </html>

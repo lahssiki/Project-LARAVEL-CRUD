@@ -1,44 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@extends('home')
 <body>
+    @section('content')
     <h1>Edit a Product</h1>
     <div>
         @if($errors->any())
-        <ul>
+        <ul class="alert alert-danger col-md-3 m-2 " role="alert">
             @foreach ($errors->all() as $error)
                 <li>{{$error}}</li>
             @endforeach
         </ul>
         @endif
     </div>
-    <form method="post" action="{{route('product.update', ['product'=>$product])}}">
+    <form class="row g-3 m-3" method="post" action="{{route('product.update', ['product'=>$product])}}">
         @csrf
         @method('put')
-        <div>
-            <label for="">name</label>
-            <input type="text" name="name" placeholder="name" value="{{$product->name}}">
+        <div class="">
+        <div class="col-md-6">
+            <label class="form-label" >name</label>
+            <input class="form-control" type="text" name="name" placeholder="name" value="{{$product->name}}">
         </div>
-        <div>
-            <label for="">qty</label>
-            <input type="text" name="qty" placeholder="qty" value="{{$product->qty}}" >
+        <div class="col-md-6">
+            <label class="form-label" >Quantity</label>
+            <input class="form-control" type="text" name="qty" placeholder="Quantity" value="{{$product->qty}}" >
         </div>
-        <div>
-            <label for="">Price</label>
-            <input type="text" name="price" placeholder="Price" value="{{$product->price}}" >
+        <div class="col-md-6">
+            <label  class="form-label">Price</label>
+            <input class="form-control" type="text" name="price" placeholder="Price" value="{{$product->price}}" >
         </div>
-        <div>
-            <label for="">description</label>
-            <input type="text" name="description" placeholder="description" value="{{$product->description}}">
-        </div>
-        <div>
-            <input type="submit" value="update Product">
+        <div class="col-md-6">
+            <label class="form-label">description</label>
+            <input class="form-control" type="text" name="description" placeholder="description" value="{{$product->description}}">
+        </div></div>
+        <div class="col-md-6 text-center">
+            <input type="submit" class="btn btn-primary " value="update Product">
         </div>
     </form>
+    @endsection
 </body>
 </html>

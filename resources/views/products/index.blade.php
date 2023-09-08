@@ -1,26 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Product</title>
+@extends('home')
+@section('content')
+
+<title>Product</title>
 </head>
 <body>
     <h1>Product</h1>
     <div>
         @if (session()->has('success'))
-        <div>
+        <div class="alert alert-success col-md-3 m-2 " role="alert">
             {{session('success')}}
         </div>
             
         @endif
     </div>
     <div>
-        <div>
-            <a href="{{route('product.create')}}">Create a Product</a>
-        </div>
-        <table border="1">
+        <table  class="table table-hover" >
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -37,13 +31,13 @@
                         <td>{{$product->price}}</td>
                         <td>{{$product->description}}</td>
                         <td>
-                            <a href="{{route('product.edit',['product'=> $product])}}">Edit</a>
+                            <a href="{{route('product.edit',['product'=> $product])}}" class="btn btn-primary">Edit</a>
                         </td>
                         <td>
                             <form method="post" action="{{route('product.destroy', ['product'=>$product])}}">
                                 @csrf
                                 @method('delete')
-                                <input type="submit" value="Delete">
+                                <input type="submit" class="btn btn-danger" value="Delete">
                             </form>
 
                         </td>
@@ -52,5 +46,6 @@
             </tr>
         </table>
     </div>
+    @endsection
 </body>
 </html>
